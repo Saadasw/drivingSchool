@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
-import { Save } from 'lucide-react';
+import { Save, Settings } from 'lucide-react';
 
 interface ContentItem {
   id: string;
@@ -31,12 +31,20 @@ export const ContentEditor = () => {
         .select('*')
         .order('section', { ascending: true });
 
-      if (error) throw error;
+      if (error) {
+        // If table doesn't exist, show empty state
+        if (error.message.includes('relation "website_content" does not exist')) {
+          setContent([]);
+          return;
+        }
+        throw error;
+      }
       setContent(data || []);
     } catch (error) {
+      console.error('Error fetching content:', error);
       toast({
         title: 'Error',
-        description: 'Failed to load content',
+        description: 'Failed to load content. Please add sample data first.',
         variant: 'destructive',
       });
     } finally {
@@ -92,6 +100,19 @@ export const ContentEditor = () => {
     acc[item.section].push(item);
     return acc;
   }, {} as Record<string, ContentItem[]>);
+
+  if (content.length === 0) {
+    return (
+      <div className="text-center py-12">
+        <div className="text-gray-500 mb-4">
+          <Settings className="h-16 w-16 mx-auto mb-4 text-gray-300" />
+          <h3 className="text-lg font-medium mb-2">No content available</h3>
+          <p className="text-sm mb-4">Website content will appear here once sample data is added.</p>
+          <p className="text-xs text-gray-400">Click "Add Sample Data" in the admin dashboard to get started.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-6">

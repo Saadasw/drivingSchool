@@ -13,8 +13,9 @@ interface FAQ {
   id: string;
   question: string;
   answer: string;
-  order_index: number;
   is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export const FAQManager = () => {
@@ -27,7 +28,6 @@ export const FAQManager = () => {
   const [formData, setFormData] = useState({
     question: '',
     answer: '',
-    order_index: 0,
     is_active: true
   });
 
@@ -38,9 +38,9 @@ export const FAQManager = () => {
   const fetchFaqs = async () => {
     try {
       const { data, error } = await supabase
-        .from('faqs')
+        .from('faq')
         .select('*')
-        .order('order_index', { ascending: true });
+        .order('created_at', { ascending: true });
 
       if (error) throw error;
       setFaqs(data || []);
@@ -60,13 +60,13 @@ export const FAQManager = () => {
     try {
       if (editingFaq) {
         const { error } = await supabase
-          .from('faqs')
+          .from('faq')
           .update(formData)
           .eq('id', editingFaq.id);
         if (error) throw error;
       } else {
         const { error } = await supabase
-          .from('faqs')
+          .from('faq')
           .insert([formData]);
         if (error) throw error;
       }
@@ -91,7 +91,7 @@ export const FAQManager = () => {
   const deleteFaq = async (id: string) => {
     try {
       const { error } = await supabase
-        .from('faqs')
+        .from('faq')
         .delete()
         .eq('id', id);
 
@@ -116,7 +116,6 @@ export const FAQManager = () => {
     setFormData({
       question: '',
       answer: '',
-      order_index: 0,
       is_active: true
     });
     setEditingFaq(null);
@@ -127,7 +126,6 @@ export const FAQManager = () => {
     setFormData({
       question: faq.question,
       answer: faq.answer,
-      order_index: faq.order_index,
       is_active: faq.is_active
     });
     setIsDialogOpen(true);
@@ -177,15 +175,7 @@ export const FAQManager = () => {
                   required
                 />
               </div>
-              <div>
-                <Label htmlFor="order_index">Order</Label>
-                <Input
-                  id="order_index"
-                  type="number"
-                  value={formData.order_index}
-                  onChange={(e) => setFormData({ ...formData, order_index: parseInt(e.target.value) })}
-                />
-              </div>
+
               <Button type="submit" className="w-full">
                 {editingFaq ? 'Update' : 'Add'} FAQ
               </Button>

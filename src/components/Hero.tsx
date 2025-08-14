@@ -16,14 +16,7 @@ const Hero: React.FC = () => {
               Professional driving instruction with experienced instructors. 
               Get your license faster with our proven teaching methods.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                Start Learning Today
-              </Button>
-              <Button size="lg" variant="outline">
-                View Our Packages
-              </Button>
-            </div>
+
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
@@ -56,12 +49,12 @@ const Hero: React.FC = () => {
           <div className="relative">
             <div className="bg-white rounded-2xl shadow-2xl p-8">
               <img 
-                src="/placeholder.svg" 
-                alt="Driving instructor with student" 
-                className="w-full h-64 object-cover rounded-lg"
+                src="/ruwaa-driving-school.jpg" 
+                alt="Ruwaa Driving School - Professional driving instruction with phone number 0481 322 734" 
+                className="w-full h-auto object-contain rounded-lg"
               />
-              <div className="absolute -top-4 -right-4 bg-yellow-400 text-black px-4 py-2 rounded-full font-bold">
-                95% Pass Rate
+              <div className="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-sm">
+                Call: 0481 322 734
               </div>
             </div>
           </div>

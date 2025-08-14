@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, BookOpen } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 interface Course {
@@ -53,6 +53,14 @@ const Courses: React.FC = () => {
           <div className="flex justify-center py-8">Loading...</div>
         ) : error ? (
           <div className="flex justify-center py-8 text-red-600">{error}</div>
+        ) : courses.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-gray-500 mb-4">
+              <BookOpen className="h-16 w-16 mx-auto mb-4 text-gray-300" />
+              <h3 className="text-lg font-medium mb-2">No courses available</h3>
+              <p className="text-sm">Courses will appear here once they are added through the admin panel.</p>
+            </div>
+          </div>
         ) : (
           <div className="grid md:grid-cols-3 gap-8">
             {courses.map((course) => (

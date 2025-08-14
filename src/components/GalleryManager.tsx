@@ -14,7 +14,9 @@ interface GalleryImage {
   title: string;
   description: string;
   image_url: string;
-  category: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export const GalleryManager = () => {
@@ -28,7 +30,7 @@ export const GalleryManager = () => {
     title: '',
     description: '',
     image_url: '',
-    category: 'general'
+    is_active: true
   });
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export const GalleryManager = () => {
   const fetchImages = async () => {
     try {
       const { data, error } = await supabase
-        .from('gallery_images')
+        .from('gallery')
         .select('*')
         .order('created_at', { ascending: false });
 
@@ -60,13 +62,13 @@ export const GalleryManager = () => {
     try {
       if (editingImage) {
         const { error } = await supabase
-          .from('gallery_images')
+          .from('gallery')
           .update(formData)
           .eq('id', editingImage.id);
         if (error) throw error;
       } else {
         const { error } = await supabase
-          .from('gallery_images')
+          .from('gallery')
           .insert([formData]);
         if (error) throw error;
       }
@@ -76,7 +78,7 @@ export const GalleryManager = () => {
         description: `Image ${editingImage ? 'updated' : 'added'} successfully`,
       });
 
-      setFormData({ title: '', description: '', image_url: '', category: 'general' });
+      setFormData({ title: '', description: '', image_url: '', is_active: true });
       setEditingImage(null);
       setIsDialogOpen(false);
       fetchImages();
@@ -92,7 +94,7 @@ export const GalleryManager = () => {
   const deleteImage = async (id: string) => {
     try {
       const { error } = await supabase
-        .from('gallery_images')
+        .from('gallery')
         .delete()
         .eq('id', id);
 
@@ -119,14 +121,14 @@ export const GalleryManager = () => {
       title: image.title,
       description: image.description,
       image_url: image.image_url,
-      category: image.category
+      is_active: image.is_active
     });
     setIsDialogOpen(true);
   };
 
   const openAddDialog = () => {
     setEditingImage(null);
-    setFormData({ title: '', description: '', image_url: '', category: 'general' });
+    setFormData({ title: '', description: '', image_url: '', is_active: true });
     setIsDialogOpen(true);
   };
 
@@ -177,15 +179,7 @@ export const GalleryManager = () => {
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 />
               </div>
-              <div>
-                <Label htmlFor="category">Category</Label>
-                <Input
-                  id="category"
-                  value={formData.category}
-                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                  placeholder="e.g., cars, facilities, instructors"
-                />
-              </div>
+
               <Button type="submit" className="w-full">
                 {editingImage ? 'Update' : 'Add'} Image
               </Button>
@@ -207,7 +201,7 @@ export const GalleryManager = () => {
             <CardContent>
               <h3 className="font-semibold">{image.title}</h3>
               <p className="text-sm text-gray-600 mb-2">{image.description}</p>
-              <p className="text-xs text-gray-500 mb-4">Category: {image.category}</p>
+
               <div className="flex gap-2">
                 <Button
                   onClick={() => openEditDialog(image)}

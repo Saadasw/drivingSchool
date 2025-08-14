@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Seeding Function</title>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        button { padding: 10px 20px; font-size: 16px; margin: 10px; }
+        .log { background: #f5f5f5; padding: 20px; border-radius: 5px; margin: 20px 0; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Seeding Function</h1>
+    
+    <button onclick="testSeeding()">Test Seed Data</button>
+    <button onclick="clearLog()">Clear Log</button>
+    
+    <div id="log" class="log"></div>
+
+    <script>
+        // Supabase configuration
+        const supabaseUrl = 'https://drfswdmnqvnknaacvbeo.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRyZnN3ZG1ucXZua25hYWN2YmVvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3NzkwMTksImV4cCI6MjA2ODM1NTAxOX0.FefCksJz2TI-AEiPT7l8W8c_jL_q5lwKo6enDyvxAOE';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : '';
+            logDiv.innerHTML += `<div class="${className}">[${timestamp}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+        }
+
+        async function testSeeding() {
+            log('🚀 Starting to seed data...');
+            
+            try {
+                // Test courses insertion
+                log('📚 Inserting courses...');
+                const coursesData = [
+                    {
+                        title: 'Test Beginner Package',
+                        description: 'Test course for beginners',
+                        price: 299,
+                        duration: '10 hours',
+                        features: ['Basic driving skills', 'Road safety training'],
+                        is_active: true
+                    }
+                ];
+
+                const { data: coursesResult, error: coursesError } = await supabase
+                    .from('courses')
+                    .insert(coursesData)
+                    .select();
+
+                if (coursesError) {
+                    log(`❌ Error inserting courses: ${coursesError.message}`, 'error');
+                    return;
+                } else {
+                    log(`✅ Courses inserted successfully: ${coursesResult?.length || 0} items`, 'success');
+                }
+
+                // Test testimonials insertion
+                log('⭐ Inserting testimonials...');
+                const testimonialsData = [
+                    {
+                        name: 'Test User',
+                        content: 'Test testimonial content',
+                        rating: 5,
+                        image_url: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+                        is_active: true
+                    }
+                ];
+
+                const { data: testimonialsResult, error: testimonialsError } = await supabase
+                    .from('testimonials')
+                    .insert(testimonialsData)
+                    .select();
+
+                if (testimonialsError) {
+                    log(`❌ Error inserting testimonials: ${testimonialsError.message}`, 'error');
+                    return;
+                } else {
+                    log(`✅ Testimonials inserted successfully: ${testimonialsResult?.length || 0} items`, 'success');
+                }
+
+                // Test FAQ insertion
+                log('❓ Inserting FAQ...');
+                const faqData = [
+                    {
+                        question: 'Test Question?',
+                        answer: 'Test answer for the question.',
+                        is_active: true
+                    }
+                ];
+
+                const { data: faqResult, error: faqError } = await supabase
+                    .from('faq')
+                    .insert(faqData)
+                    .select();
+
+                if (faqError) {
+                    log(`❌ Error inserting FAQ: ${faqError.message}`, 'error');
+                    return;
+                } else {
+                    log(`✅ FAQ inserted successfully: ${faqResult?.length || 0} items`, 'success');
+                }
+
+                // Test gallery insertion
+                log('🖼️ Inserting gallery...');
+                const galleryData = [
+                    {
+                        title: 'Test Image',
+                        description: 'Test gallery description',
+                        image_url: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=300&fit=crop',
+                        is_active: true
+                    }
+                ];
+
+                const { data: galleryResult, error: galleryError } = await supabase
+                    .from('gallery')
+                    .insert(galleryData)
+                    .select();
+
+                if (galleryError) {
+                    log(`❌ Error inserting gallery: ${galleryError.message}`, 'error');
+                    return;
+                } else {
+                    log(`✅ Gallery inserted successfully: ${galleryResult?.length || 0} items`, 'success');
+                }
+
+                // Test website content insertion
+                log('🌐 Inserting website content...');
+                const contentData = [
+                    {
+                        section: 'test',
+                        key: 'title',
+                        value: 'Test Title'
+                    }
+                ];
+
+                const { data: contentResult, error: contentError } = await supabase
+                    .from('website_content')
+                    .insert(contentData)
+                    .select();
+
+                if (contentError) {
+                    log(`❌ Error inserting website content: ${contentError.message}`, 'error');
+                    return;
+                } else {
+                    log(`✅ Website content inserted successfully: ${contentResult?.length || 0} items`, 'success');
+                }
+
+                // Test contacts insertion
+                log('📧 Inserting contact messages...');
+                const contactMessagesData = [
+                    {
+                        name: 'Test Contact',
+                        email: 'test@example.com',
+                        phone: '0412 345 678',
+                        message: 'Test contact message',
+                        is_read: false,
+                        created_at: new Date().toISOString()
+                    }
+                ];
+
+                const { data: contactsResult, error: contactsError } = await supabase
+                    .from('contacts')
+                    .insert(contactMessagesData)
+                    .select();
+
+                if (contactsError) {
+                    log(`❌ Error inserting contact messages: ${contactsError.message}`, 'error');
+                    return;
+                } else {
+                    log(`✅ Contact messages inserted successfully: ${contactsResult?.length || 0} items`, 'success');
+                }
+
+                log('🎉 All seeding tests completed successfully!', 'success');
+
+            } catch (error) {
+                log(`💥 Seeding crashed: ${error.message}`, 'error');
+            }
+        }
+    </script>
+</body>
+</html>

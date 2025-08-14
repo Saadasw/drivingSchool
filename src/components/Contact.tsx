@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { useVisibility } from '@/contexts/VisibilityContext';
 
 const Contact: React.FC = () => {
   const [form, setForm] = useState({
@@ -16,6 +17,7 @@ const Contact: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const { visibility } = useVisibility();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -64,21 +66,21 @@ const Contact: React.FC = () => {
                 <CardContent className="p-6 text-center">
                   <Phone className="h-8 w-8 text-blue-600 mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">Phone</h3>
-                  <p className="text-gray-600">(555) 123-4567</p>
+                  <p className="text-gray-600">0481 322 734</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6 text-center">
                   <Mail className="h-8 w-8 text-blue-600 mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">Email</h3>
-                  <p className="text-gray-600">info@driveacademy.com</p>
+                  <p className="text-gray-600">info@ruwaadrivingschool.com.au</p>
                 </CardContent>
               </Card>
               <Card>
                 <CardContent className="p-6 text-center">
                   <MapPin className="h-8 w-8 text-blue-600 mx-auto mb-4" />
                   <h3 className="font-semibold mb-2">Address</h3>
-                  <p className="text-gray-600">123 Main Street<br />City, State 12345</p>
+                  <p className="text-gray-600">123 George Street<br />Sydney, NSW 2000</p>
                 </CardContent>
               </Card>
               <Card>
@@ -89,14 +91,26 @@ const Contact: React.FC = () => {
                 </CardContent>
               </Card>
             </div>
-            <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-              <p className="text-gray-500">Interactive Google Map will be embedded here</p>
-            </div>
+            {visibility.showMap && (
+              <div className="rounded-lg h-64 overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22864.8257898!2d133.7751!3d-25.2744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2b2bfd076787c5df%3A0x538267a1955b1352!2sAustralia!5e0!3m2!1sen!2sau!4v1640995200000!5m2!1sen!2sau"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Australia - Driving School Location"
+                ></iframe>
+              </div>
+            )}
           </div>
-          <Card>
-            <CardHeader>
-              <CardTitle>Send us a Message</CardTitle>
-            </CardHeader>
+          {visibility.showContactForm && (
+            <Card>
+              <CardHeader>
+                <CardTitle>Send us a Message</CardTitle>
+              </CardHeader>
             <CardContent>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -143,6 +157,7 @@ const Contact: React.FC = () => {
               </form>
             </CardContent>
           </Card>
+          )}
         </div>
       </div>
     </section>

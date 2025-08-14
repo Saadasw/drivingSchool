@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Menu, Phone, Mail, MapPin } from 'lucide-react';
+import { Menu, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -35,11 +35,17 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
           <div className="hidden lg:flex items-center space-x-4 text-sm">
             <div className="flex items-center space-x-1">
               <Phone className="h-4 w-4 text-blue-600" />
-              <span>(555) 123-4567</span>
+              <span>0481 322 734</span>
             </div>
-            <Button className="bg-blue-600 hover:bg-blue-700">
-              Book Now
-            </Button>
+            <a 
+              href="https://wa.me/61481322734" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md font-medium transition-colors"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp
+            </a>
           </div>
         </div>
       </div>

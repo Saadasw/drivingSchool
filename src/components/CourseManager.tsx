@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/use-toast';
-import { Plus, Trash2, Edit, X } from 'lucide-react';
+import { Plus, Trash2, Edit, X, BookOpen } from 'lucide-react';
 
 interface Course {
   id: string;
@@ -48,12 +48,20 @@ export const CourseManager = () => {
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
+      if (error) {
+        // If table doesn't exist, show empty state
+        if (error.message.includes('relation "courses" does not exist')) {
+          setCourses([]);
+          return;
+        }
+        throw error;
+      }
       setCourses(data || []);
     } catch (error) {
+      console.error('Error fetching courses:', error);
       toast({
         title: 'Error',
-        description: 'Failed to load courses',
+        description: 'Failed to load courses. Please add sample data first.',
         variant: 'destructive',
       });
     } finally {
@@ -168,6 +176,43 @@ export const CourseManager = () => {
 
   if (loading) {
     return <div className="flex justify-center py-8">Loading...</div>;
+  }
+
+  if (courses.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold">Course Management</h2>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button onClick={openAddDialog}>
+                <Plus className="w-4 h-4 mr-2" />
+                Add Course
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle>Add Course</DialogTitle>
+              </DialogHeader>
+              <div className="text-center py-8">
+                <BookOpen className="h-16 w-16 mx-auto mb-4 text-gray-300" />
+                <h3 className="text-lg font-medium mb-2">No courses available</h3>
+                <p className="text-sm mb-4">Courses will appear here once they are added.</p>
+                <p className="text-xs text-gray-400">Click "Add Sample Data" in the admin dashboard to get started.</p>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
+        <div className="text-center py-12">
+          <div className="text-gray-500 mb-4">
+            <BookOpen className="h-16 w-16 mx-auto mb-4 text-gray-300" />
+            <h3 className="text-lg font-medium mb-2">No courses available</h3>
+            <p className="text-sm mb-4">Courses will appear here once they are added through the admin panel.</p>
+            <p className="text-xs text-gray-400">Click "Add Sample Data" in the admin dashboard to get started.</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (

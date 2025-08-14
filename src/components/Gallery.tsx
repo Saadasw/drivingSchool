@@ -20,13 +20,20 @@ const Gallery: React.FC = () => {
       setLoading(true);
       setError(null);
       try {
+        console.log('🔍 Gallery: Fetching data...');
         const { data, error } = await supabase
-          .from('gallery_images')
+          .from('gallery')
           .select('*')
+          .eq('is_active', true)
           .order('created_at', { ascending: false });
+        
+        console.log('🔍 Gallery: Response:', { data, error });
+        
         if (error) throw error;
+        console.log('🔍 Gallery: Setting items:', data?.length || 0);
         setGalleryItems(data || []);
       } catch (err: any) {
+        console.error('🔍 Gallery: Error:', err);
         setError('Failed to load gallery images.');
       } finally {
         setLoading(false);
@@ -48,6 +55,10 @@ const Gallery: React.FC = () => {
           <div className="flex justify-center py-8">Loading...</div>
         ) : error ? (
           <div className="flex justify-center py-8 text-red-600">{error}</div>
+        ) : galleryItems.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            <p>No gallery items available at the moment.</p>
+          </div>
         ) : (
           <div className="grid md:grid-cols-3 gap-6">
             {galleryItems.map((item) => (
@@ -71,12 +82,7 @@ const Gallery: React.FC = () => {
             ))}
           </div>
         )}
-        <div className="text-center mt-12">
-          <p className="text-gray-600 mb-4">Want to see more? Visit our school for a tour!</p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-            Schedule a Visit
-          </button>
-        </div>
+
       </div>
     </section>
   );

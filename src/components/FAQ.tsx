@@ -1,33 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { supabase } from '@/lib/supabase';
+
+interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+  is_active: boolean;
+}
 
 const FAQ: React.FC = () => {
-  const faqs = [
-    {
-      question: "How do I register for driving lessons?",
-      answer: "You can register online through our booking form, call us directly, or visit our office. We'll help you choose the right package and schedule your lessons."
-    },
-    {
-      question: "What's the duration of each driving lesson?",
-      answer: "Standard lessons are 2 hours long. This gives enough time for proper instruction and practice without fatigue. We also offer 1-hour sessions for specific skill practice."
-    },
-    {
-      question: "Do you offer both manual and automatic car lessons?",
-      answer: "Yes! We have a modern fleet of both manual and automatic vehicles. You can choose based on your preference and the type of license you want to obtain."
-    },
-    {
-      question: "What are the requirements for taking the driving test?",
-      answer: "You must be at least 18 years old, have a valid learner's permit, complete the required training hours, and pass both theory and practical assessments."
-    },
-    {
-      question: "How many lessons do I need before taking the test?",
-      answer: "This varies by individual, but most students need 20-40 hours of practice. Our instructors will assess your progress and recommend when you're ready for the test."
-    },
-    {
-      question: "Can I reschedule or cancel my lessons?",
-      answer: "Yes, you can reschedule or cancel lessons with at least 24 hours notice. Late cancellations may incur a fee as outlined in our terms and conditions."
-    }
-  ];
+  const [faqs, setFaqs] = useState<FAQItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchFAQ = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        console.log('🔍 FAQ: Fetching data...');
+        const { data, error } = await supabase
+          .from('faq')
+          .select('*')
+          .eq('is_active', true)
+          .order('created_at', { ascending: true });
+        
+        console.log('🔍 FAQ: Response:', { data, error });
+        
+        if (error) throw error;
+        console.log('🔍 FAQ: Setting items:', data?.length || 0);
+        setFaqs(data || []);
+      } catch (err: any) {
+        console.error('🔍 FAQ: Error:', err);
+        setError('Failed to load FAQ.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFAQ();
+  }, []);
 
   return (
     <section id="faq" className="py-20">
@@ -39,27 +51,32 @@ const FAQ: React.FC = () => {
           </p>
         </div>
         
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-6">
-                <AccordionTrigger className="text-left hover:no-underline">
-                  <span className="font-medium">{faq.question}</span>
-                </AccordionTrigger>
-                <AccordionContent className="text-gray-600 pb-4">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
+        {loading ? (
+          <div className="flex justify-center py-8">Loading...</div>
+        ) : error ? (
+          <div className="flex justify-center py-8 text-red-600">{error}</div>
+        ) : faqs.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            <p>No FAQ items available at the moment.</p>
+          </div>
+        ) : (
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqs.map((faq, index) => (
+                <AccordionItem key={faq.id} value={`item-${index}`} className="border rounded-lg px-6">
+                  <AccordionTrigger className="text-left hover:no-underline">
+                    <span className="font-medium">{faq.question}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-gray-600 pb-4">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        )}
         
-        <div className="text-center mt-12">
-          <p className="text-gray-600 mb-4">Still have questions?</p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">
-            Contact Us
-          </button>
-        </div>
+
       </div>
     </section>
   );

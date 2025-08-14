@@ -1,5 +1,5 @@
 import React from 'react';
-import { X } from 'lucide-react';
+import { X, MessageCircle } from 'lucide-react';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -29,9 +29,15 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             <li><a href="#contact" className="block py-2 text-gray-700 hover:text-blue-600" onClick={onClose}>Contact</a></li>
           </ul>
           <div className="mt-8 pt-8 border-t">
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium">
-              Book Now
-            </button>
+            <a 
+              href="https://wa.me/61481322734" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-medium transition-colors"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp
+            </a>
           </div>
         </nav>
       </div>

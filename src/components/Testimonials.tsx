@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star, Quote } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { useStatistics } from '@/contexts/StatisticsContext';
 
 interface Testimonial {
   id: string;
@@ -16,6 +17,7 @@ const Testimonials: React.FC = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { statistics } = useStatistics();
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -51,6 +53,14 @@ const Testimonials: React.FC = () => {
           <div className="flex justify-center py-8">Loading...</div>
         ) : error ? (
           <div className="flex justify-center py-8 text-red-600">{error}</div>
+        ) : testimonials.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-gray-500 mb-4">
+              <Quote className="h-16 w-16 mx-auto mb-4 text-gray-300" />
+              <h3 className="text-lg font-medium mb-2">No testimonials available</h3>
+              <p className="text-sm">Student testimonials will appear here once they are added through the admin panel.</p>
+            </div>
+          </div>
         ) : (
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial) => (
@@ -85,15 +95,15 @@ const Testimonials: React.FC = () => {
           <p className="text-gray-600 mb-4">Join hundreds of satisfied students who earned their license with us!</p>
           <div className="flex justify-center items-center space-x-4">
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">500+</div>
+              <div className="text-3xl font-bold text-blue-600">{statistics.happyStudents}</div>
               <div className="text-sm text-gray-500">Happy Students</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">95%</div>
+              <div className="text-3xl font-bold text-blue-600">{statistics.passRate}</div>
               <div className="text-sm text-gray-500">Pass Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">10+</div>
+              <div className="text-3xl font-bold text-blue-600">{statistics.yearsExperience}</div>
               <div className="text-sm text-gray-500">Years Experience</div>
             </div>
           </div>
