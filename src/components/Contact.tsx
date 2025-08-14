@@ -106,58 +106,60 @@ const Contact: React.FC = () => {
               </div>
             )}
           </div>
-          {visibility.showContactForm && (
-            <Card>
-              <CardHeader>
-                <CardTitle>Send us a Message</CardTitle>
-              </CardHeader>
-            <CardContent>
-              <form className="space-y-4" onSubmit={handleSubmit}>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <Input
-                    placeholder="Your Name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                  />
-                  <Input
-                    placeholder="Your Email"
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <Input
-                  placeholder="Phone Number"
-                  type="tel"
-                  name="phone"
-                  value={form.phone}
-                  onChange={handleChange}
-                />
-                <Textarea
-                  placeholder="Your Message"
-                  rows={4}
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  required
-                />
-                <Button
-                  className="w-full bg-blue-600 hover:bg-blue-700"
-                  type="submit"
-                  disabled={loading}
-                >
-                  {loading ? 'Sending...' : 'Send Message'}
-                </Button>
-                {success && <p className="text-green-600 text-center mt-2">{success}</p>}
-                {error && <p className="text-red-600 text-center mt-2">{error}</p>}
-              </form>
-            </CardContent>
-          </Card>
-          )}
+          <div>
+            {visibility.showContactForm && (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Send us a Message</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <form className="space-y-4" onSubmit={handleSubmit}>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <Input
+                        placeholder="Your Name"
+                        name="name"
+                        value={form.name}
+                        onChange={handleChange}
+                        required
+                      />
+                      <Input
+                        placeholder="Your Email"
+                        type="email"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <Input
+                      placeholder="Phone Number"
+                      type="tel"
+                      name="phone"
+                      value={form.phone}
+                      onChange={handleChange}
+                    />
+                    <Textarea
+                      placeholder="Your Message"
+                      rows={4}
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Button
+                      className="w-full bg-blue-600 hover:bg-blue-700"
+                      type="submit"
+                      disabled={loading}
+                    >
+                      {loading ? 'Sending...' : 'Send Message'}
+                    </Button>
+                    {success && <p className="text-green-600 text-center mt-2">{success}</p>}
+                    {error && <p className="text-red-600 text-center mt-2">{error}</p>}
+                  </form>
+                </CardContent>
+              </Card>
+            )}
+          </div>
         </div>
       </div>
     </section>
