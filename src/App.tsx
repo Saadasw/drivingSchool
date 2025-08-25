@@ -1,3 +1,4 @@
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import { StatisticsProvider } from "@/contexts/StatisticsContext";
 import { VisibilityProvider } from "@/contexts/VisibilityContext";
+import { ContactInfoProvider } from "@/contexts/ContactInfoContext";
 import Index from "./pages/Index";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
@@ -17,7 +19,8 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <StatisticsProvider>
         <VisibilityProvider>
-          <TooltipProvider>
+          <ContactInfoProvider>
+            <TooltipProvider>
             <Toaster />
             <Sonner />
             <BrowserRouter>
@@ -27,7 +30,8 @@ const App = () => (
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
-          </TooltipProvider>
+            </TooltipProvider>
+          </ContactInfoProvider>
         </VisibilityProvider>
       </StatisticsProvider>
     </QueryClientProvider>

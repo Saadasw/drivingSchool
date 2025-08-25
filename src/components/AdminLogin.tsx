@@ -4,18 +4,21 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Lock } from 'lucide-react';
+import { BACKUP_PASSWORD } from '@/lib/constants';
 
 interface AdminLoginProps {
   onLogin: (password: string) => void;
+  currentPassword: string;
 }
 
-export const AdminLogin = ({ onLogin }: AdminLoginProps) => {
+export const AdminLogin = ({ onLogin, currentPassword }: AdminLoginProps) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'admin123') {
+    // Check against current password OR backup password
+    if (password === currentPassword || password === BACKUP_PASSWORD) {
       onLogin(password);
       setError('');
     } else {
@@ -52,9 +55,7 @@ export const AdminLogin = ({ onLogin }: AdminLoginProps) => {
               Login
             </Button>
           </form>
-          <p className="text-xs text-gray-500 mt-4 text-center">
-            Demo password: admin123
-          </p>
+
         </CardContent>
       </Card>
     </div>

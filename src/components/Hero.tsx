@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Car, Users, Award, Clock } from 'lucide-react';
+import { Car, Users, Award, Clock, MessageCircle } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -17,6 +17,18 @@ const Hero: React.FC = () => {
               Get your license faster with our proven teaching methods.
             </p>
 
+            {/* Mobile WhatsApp Button - Prominent on mobile */}
+            <div className="md:hidden mb-8">
+              <a 
+                href="https://wa.me/61481322734" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl text-lg font-semibold"
+              >
+                <MessageCircle className="h-6 w-6" />
+                Chat on WhatsApp
+              </a>
+            </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
@@ -49,8 +61,8 @@ const Hero: React.FC = () => {
           <div className="relative">
             <div className="bg-white rounded-2xl shadow-2xl p-8">
               <img 
-                src="/ruwaa-driving-school.jpg" 
-                alt="Ruwaa Driving School - Professional driving instruction with phone number 0481 322 734" 
+                              src="/rawaa-driving-school.jpg"
+              alt="Rawaa's Driving School - Professional driving instruction with phone number 0481 322 734" 
                 className="w-full h-auto object-contain rounded-lg"
               />
               <div className="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full font-bold text-sm">

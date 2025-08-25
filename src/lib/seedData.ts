@@ -144,44 +144,44 @@ export const seedData = async () => {
     // Seed Website Content
     const contentData = [
       {
-        section: 'hero',
-        key: 'title',
-        value: 'Learn to Drive with Confidence'
+        section_name: 'hero_title',
+        content: 'Learn to Drive with Confidence',
+        is_active: true
       },
       {
-        section: 'hero',
-        key: 'subtitle',
-        value: 'Professional driving instruction with experienced instructors. Get your license faster with our proven teaching methods.'
+        section_name: 'hero_description',
+        content: 'Professional driving instruction with experienced instructors. Get your license faster with our proven teaching methods.',
+        is_active: true
       },
       {
-        section: 'hero',
-        key: 'cta_primary',
-        value: 'Start Learning Today'
+        section_name: 'hero_cta_primary',
+        content: 'Start Learning Today',
+        is_active: true
       },
       {
-        section: 'hero',
-        key: 'cta_secondary',
-        value: 'View Our Packages'
+        section_name: 'hero_cta_secondary',
+        content: 'View Our Packages',
+        is_active: true
       },
       {
-        section: 'courses',
-        key: 'title',
-        value: 'Our Driving Courses'
+        section_name: 'courses_title',
+        content: 'Our Driving Courses',
+        is_active: true
       },
       {
-        section: 'courses',
-        key: 'description',
-        value: 'Choose from our range of professional driving courses designed to meet your needs and schedule.'
+        section_name: 'courses_description',
+        content: 'Choose from our range of professional driving courses designed to meet your needs and schedule.',
+        is_active: true
       },
       {
-        section: 'contact',
-        key: 'title',
-        value: 'Get In Touch'
+        section_name: 'contact_title',
+        content: 'Get In Touch',
+        is_active: true
       },
       {
-        section: 'contact',
-        key: 'description',
-        value: 'Ready to start your driving journey? Contact us today to book your lessons or ask any questions.'
+        section_name: 'contact_description',
+        content: 'Ready to start your driving journey? Contact us today to book your lessons or ask any questions.',
+        is_active: true
       }
     ];
 

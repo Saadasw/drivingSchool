@@ -10,9 +10,9 @@ import { Save, Settings } from 'lucide-react';
 
 interface ContentItem {
   id: string;
-  section: string;
-  key: string;
-  value: string;
+  section_name: string;
+  content: any;
+  is_active: boolean;
 }
 
 export const ContentEditor = () => {
@@ -29,7 +29,7 @@ export const ContentEditor = () => {
       const { data, error } = await supabase
         .from('website_content')
         .select('*')
-        .order('section', { ascending: true });
+        .order('section_name', { ascending: true });
 
       if (error) {
         // If table doesn't exist, show empty state
@@ -52,18 +52,18 @@ export const ContentEditor = () => {
     }
   };
 
-  const updateContent = async (id: string, section: string, key: string, value: string) => {
+  const updateContent = async (id: string, section_name: string, content: any) => {
     try {
       const { error } = await supabase
         .from('website_content')
-        .upsert({ id, section, key, value, updated_at: new Date().toISOString() });
+        .upsert({ id, section_name, content, updated_at: new Date().toISOString() });
 
       if (error) throw error;
 
       setContent(prev => 
         prev.map(item => 
-          item.section === section && item.key === key 
-            ? { ...item, value }
+          item.section_name === section_name 
+            ? { ...item, content }
             : item
         )
       );
@@ -81,11 +81,11 @@ export const ContentEditor = () => {
     }
   };
 
-  const handleInputChange = (section: string, key: string, value: string) => {
+  const handleInputChange = (section_name: string, content: any) => {
     setContent(prev => 
       prev.map(item => 
-        item.section === section && item.key === key 
-          ? { ...item, value }
+        item.section_name === section_name 
+          ? { ...item, content }
           : item
       )
     );
@@ -96,8 +96,8 @@ export const ContentEditor = () => {
   }
 
   const groupedContent = content.reduce((acc, item) => {
-    if (!acc[item.section]) acc[item.section] = [];
-    acc[item.section].push(item);
+    if (!acc[item.section_name]) acc[item.section_name] = [];
+    acc[item.section_name].push(item);
     return acc;
   }, {} as Record<string, ContentItem[]>);
 
@@ -119,33 +119,48 @@ export const ContentEditor = () => {
       {Object.entries(groupedContent).map(([section, items]) => (
         <Card key={section}>
           <CardHeader>
-            <CardTitle className="capitalize">{section} Content</CardTitle>
+            <CardTitle className="capitalize">{section.replace(/_/g, ' ')}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {items.map((item) => (
-              <div key={`${item.section}-${item.key}`}>
-                <Label className="capitalize">{item.key.replace('_', ' ')}</Label>
-                {item.key.includes('description') || item.key.includes('content') ? (
+              <div key={item.id} className="space-y-2">
+                <Label htmlFor={`content-${item.id}`}>
+                  {item.section_name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                </Label>
+                {typeof item.content === 'string' ? (
                   <Textarea
-                    value={item.value || ''}
-                    onChange={(e) => handleInputChange(item.section, item.key, e.target.value)}
-                    className="mt-1"
+                    id={`content-${item.id}`}
+                    value={item.content}
+                    onChange={(e) => handleInputChange(item.section_name, e.target.value)}
+                    placeholder={`Enter ${item.section_name.replace(/_/g, ' ')} content`}
                     rows={3}
                   />
                 ) : (
-                  <Input
-                    value={item.value || ''}
-                    onChange={(e) => handleInputChange(item.section, item.key, e.target.value)}
-                    className="mt-1"
-                  />
+                  <div className="space-y-2">
+                    {Object.entries(item.content).map(([key, value]) => (
+                      <div key={key} className="space-y-1">
+                        <Label htmlFor={`${item.id}-${key}`} className="text-sm font-medium">
+                          {key.replace(/\b\w/g, l => l.toUpperCase())}
+                        </Label>
+                        <Input
+                          id={`${item.id}-${key}`}
+                          value={value as string}
+                          onChange={(e) => {
+                            const newContent = { ...item.content, [key]: e.target.value };
+                            handleInputChange(item.section_name, newContent);
+                          }}
+                          placeholder={`Enter ${key}`}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 )}
                 <Button
-                  onClick={() => updateContent(item.id, item.section, item.key, item.value)}
-                  size="sm"
-                  className="mt-2"
+                  onClick={() => updateContent(item.id, item.section_name, item.content)}
+                  className="w-full sm:w-auto"
                 >
                   <Save className="w-4 h-4 mr-2" />
-                  Save
+                  Save Changes
                 </Button>
               </div>
             ))}

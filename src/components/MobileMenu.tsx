@@ -14,7 +14,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       <div className="fixed inset-0 bg-black bg-opacity-50" onClick={onClose} />
       <div className="fixed top-0 left-0 w-64 h-full bg-white shadow-lg">
         <div className="flex items-center justify-between p-4 border-b">
-          <h2 className="text-xl font-bold text-blue-600">DriveAcademy</h2>
+                      <h2 className="text-xl font-bold text-blue-600">Rawaa's Driving School</h2>
           <button onClick={onClose}>
             <X className="h-6 w-6" />
           </button>
