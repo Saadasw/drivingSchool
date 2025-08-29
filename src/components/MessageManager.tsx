@@ -18,8 +18,6 @@ interface ContactMessage {
   message: string;
   created_at: string;
   is_read?: boolean;
-  response?: string;
-  responded_at?: string;
 }
 
 export const MessageManager = () => {
@@ -188,9 +186,7 @@ export const MessageManager = () => {
                   {!message.is_read && (
                     <Badge variant="secondary" className="text-xs">New</Badge>
                   )}
-                  {message.response && (
-                    <Badge variant="outline" className="text-xs text-green-600">Replied</Badge>
-                  )}
+
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-gray-500 flex items-center gap-1">
