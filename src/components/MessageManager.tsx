@@ -222,17 +222,7 @@ export const MessageManager = () => {
                 <p className="text-sm bg-gray-50 p-3 rounded-md mt-1">{message.message}</p>
               </div>
 
-              {message.response && (
-                <div className="mb-4">
-                  <Label className="text-sm font-medium text-gray-700">Your Response</Label>
-                  <p className="text-sm bg-green-50 p-3 rounded-md mt-1 border border-green-200">
-                    {message.response}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">
-                    Replied on: {message.responded_at ? formatDate(message.responded_at) : 'Unknown'}
-                  </p>
-                </div>
-              )}
+
 
                              <div className="flex gap-2">
                  {!message.is_read && (
