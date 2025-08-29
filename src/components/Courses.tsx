@@ -84,7 +84,14 @@ const Courses: React.FC = () => {
                       ))}
                     </div>
                   </div>
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  <Button 
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    onClick={() => {
+                      const message = `Hi! I'm interested in the ${course.title} course for $${course.price}. Can you tell me more about this package and how to get started?`;
+                      const whatsappUrl = `https://wa.me/61481322734?text=${encodeURIComponent(message)}`;
+                      window.open(whatsappUrl, '_blank');
+                    }}
+                  >
                     Choose This Package
                   </Button>
                 </CardContent>
