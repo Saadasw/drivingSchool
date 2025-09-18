@@ -30,7 +30,7 @@ const About: React.FC = () => {
                 <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20">
                   <img 
                     src="/rawaa-driving-school.jpg"
-                    alt="Rawaa Hassan - Certified Driving Instructor"
+                    alt="Rawaa H - Certified Driving Instructor"
                     className="w-full h-auto rounded-2xl shadow-lg group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -43,14 +43,14 @@ const About: React.FC = () => {
                   <span className="text-driving-orange font-semibold text-sm">🏆 Certified Professional</span>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-bold text-gray-900">
-                  Rawaa Hassan
+                  Rawaa H
                 </h3>
                 <div className="w-20 h-1 bg-gradient-to-r from-driving-orange to-driving-blue rounded-full"></div>
               </div>
               
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Hey I'm Rawaa Hassan, a highly experienced and certified driving instructor. 
+                  Hey I'm Rawaa H, a highly experienced and certified driving instructor. 
                   For the past 15 years, I have dedicated my career to helping students become 
                   safe, confident, and successful drivers.
                 </p>
