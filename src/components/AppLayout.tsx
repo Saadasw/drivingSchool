@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import Hero from './Hero';
+import About from './About';
 import Courses from './Courses';
 import Gallery from './Gallery';
 import Testimonials from './Testimonials';
@@ -22,6 +23,7 @@ const AppLayout: React.FC = () => {
       <MobileMenu isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
       <main>
         <Hero />
+        <About />
         <Courses />
         <Gallery />
         <Testimonials />

@@ -22,6 +22,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
         <nav className="p-4">
           <ul className="space-y-4">
             <li><a href="#home" className="block py-2 text-gray-700 hover:text-blue-600" onClick={onClose}>Home</a></li>
+            <li><a href="#about" className="block py-2 text-gray-700 hover:text-blue-600" onClick={onClose}>About</a></li>
             <li><a href="#courses" className="block py-2 text-gray-700 hover:text-blue-600" onClick={onClose}>Courses</a></li>
             <li><a href="#gallery" className="block py-2 text-gray-700 hover:text-blue-600" onClick={onClose}>Gallery</a></li>
             <li><a href="#testimonials" className="block py-2 text-gray-700 hover:text-blue-600" onClick={onClose}>Reviews</a></li>

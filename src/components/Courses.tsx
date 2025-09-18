@@ -41,13 +41,26 @@ const Courses: React.FC = () => {
   }, []);
 
   return (
-    <section id="courses" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Driving Courses</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+    <section id="courses" className="relative py-24 bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/30 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-driving-orange/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-driving-purple/5 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center px-4 py-2 bg-driving-orange/10 rounded-full mb-6">
+            <span className="text-driving-orange font-semibold text-sm">📚 Our Courses</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            Our Driving
+            <span className="bg-gradient-to-r from-driving-orange to-driving-purple bg-clip-text text-transparent block">
+              Courses
+            </span>
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Choose from our range of professional driving courses designed to meet your needs and schedule.
           </p>
+          <div className="w-32 h-1 bg-gradient-to-r from-driving-orange to-driving-purple mx-auto rounded-full mt-6"></div>
         </div>
         {loading ? (
           <div className="flex justify-center py-8">Loading...</div>
@@ -62,30 +75,45 @@ const Courses: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="grid md:grid-cols-3 gap-8">
-            {courses.map((course) => (
-              <Card key={course.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-xl">{course.title}</CardTitle>
-                    <Badge variant="secondary">{course.duration}</Badge>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {courses.map((course, index) => (
+              <Card key={course.id} className="group relative bg-white/90 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 overflow-hidden">
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-driving-blue/5 to-driving-orange/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <CardHeader className="relative z-10 pb-4">
+                  <div className="flex justify-between items-start mb-3">
+                    <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-driving-blue transition-colors">
+                      {course.title}
+                    </CardTitle>
+                    <Badge className="bg-gradient-to-r from-driving-orange to-driving-orange-light text-white border-0 shadow-lg">
+                      {course.duration}
+                    </Badge>
                   </div>
-                  <CardDescription>{course.description}</CardDescription>
+                  <CardDescription className="text-gray-600 leading-relaxed">
+                    {course.description}
+                  </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="mb-6">
-                    <div className="text-3xl font-bold text-blue-600 mb-2">${course.price}</div>
-                    <div className="space-y-2">
-                      {course.features?.map((feature, index) => (
-                        <div key={index} className="flex items-center space-x-2">
-                          <CheckCircle className="h-4 w-4 text-green-500" />
-                          <span className="text-sm">{feature}</span>
+                
+                <CardContent className="relative z-10 space-y-6">
+                  <div className="text-center">
+                    <div className="text-4xl font-bold bg-gradient-to-r from-driving-blue to-driving-orange bg-clip-text text-transparent mb-2">
+                      ${course.price}
+                    </div>
+                    <div className="space-y-3">
+                      {course.features?.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-center space-x-3">
+                          <div className="bg-gradient-to-r from-driving-green to-driving-green-light rounded-full p-1">
+                            <CheckCircle className="h-4 w-4 text-white" />
+                          </div>
+                          <span className="text-sm font-medium text-gray-700">{feature}</span>
                         </div>
                       ))}
                     </div>
                   </div>
+                  
                   <Button 
-                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    className="w-full bg-gradient-to-r from-driving-blue to-driving-orange hover:from-driving-blue-light hover:to-driving-orange-light text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold py-3"
                     onClick={() => {
                       const message = `Hi! I'm interested in the ${course.title} course for $${course.price}. Can you tell me more about this package and how to get started?`;
                       const whatsappUrl = `https://wa.me/61481322734?text=${encodeURIComponent(message)}`;

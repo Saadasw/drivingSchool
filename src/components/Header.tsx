@@ -39,6 +39,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
             
             <nav className="hidden md:flex space-x-8">
               <a href="#home" className="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
               <a href="#courses" className="text-gray-700 hover:text-blue-600 transition-colors">Courses</a>
               <a href="#gallery" className="text-gray-700 hover:text-blue-600 transition-colors">Gallery</a>
               <a href="#testimonials" className="text-gray-700 hover:text-blue-600 transition-colors">Reviews</a>

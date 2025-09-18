@@ -54,94 +54,103 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
-                 <div className="text-center mb-16">
-           <h2 className="text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
-           <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-6">
-             Ready to start your driving journey? Contact us today to book your lessons or ask any questions.
-           </p>
-           
-           {/* Mobile WhatsApp Button - Prominent in contact section */}
-           <div className="md:hidden">
-             <a 
-               href="https://wa.me/61481322734" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               className="inline-flex items-center gap-3 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl shadow-lg transition-all duration-200 hover:scale-105 hover:shadow-xl text-lg font-semibold"
-             >
-               <MessageCircle className="h-6 w-6" />
-               Start Chat on WhatsApp
-             </a>
-           </div>
-         </div>
-                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                     <div>
-             {isLoading ? (
-               <div className="text-center py-8">
-                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-                 <p className="mt-4 text-gray-600">Loading contact information...</p>
-               </div>
-             ) : contactInfo ? (
-               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
-                 {visibility.showPhone && (
-                   <Card>
-                     <CardContent className="p-6 text-center">
-                       <Phone className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-                       <h3 className="font-semibold mb-2">Phone</h3>
-                       <p className="text-gray-600">{contactInfo.phone}</p>
-                     </CardContent>
-                   </Card>
-                 )}
-                 {visibility.showEmail && (
-                   <Card>
-                     <CardContent className="p-6 text-center">
-                       <Mail className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-                       <h3 className="font-semibold mb-2">Email</h3>
-                       <p className="text-gray-600">{contactInfo.email}</p>
-                     </CardContent>
-                   </Card>
-                 )}
-                 {visibility.showAddress && (
-                   <Card>
-                     <CardContent className="p-6 text-center">
-                       <MapPin className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-                       <h3 className="font-semibold mb-2">Address</h3>
-                       <p className="text-gray-600 whitespace-pre-line">{contactInfo.address}</p>
-                     </CardContent>
-                   </Card>
-                 )}
-                 {visibility.showHours && (
-                   <Card>
-                     <CardContent className="p-6 text-center">
-                       <Clock className="h-8 w-8 text-blue-600 mx-auto mb-4" />
-                       <h3 className="font-semibold mb-2">Hours</h3>
-                       <p className="text-gray-600 whitespace-pre-line">{contactInfo.hours}</p>
-                     </CardContent>
-                   </Card>
-                 )}
-               </div>
-             ) : (
-               <div className="text-center py-8 text-gray-600">
-                 <p>Contact information not available</p>
-               </div>
-             )}
-           </div>
+    <section id="contact" className="relative py-24 bg-gradient-to-br from-gray-50 via-green-50/30 to-blue-50/30 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-driving-green/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-driving-blue/5 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center px-4 py-2 bg-driving-green/10 rounded-full mb-6">
+            <span className="text-driving-green font-semibold text-sm">📞 Get In Touch</span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+            Get In
+            <span className="bg-gradient-to-r from-driving-green to-driving-blue bg-clip-text text-transparent block">
+              Touch
+            </span>
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+            Ready to start your driving journey? Contact us today to book your lessons or ask any questions.
+          </p>
+          <div className="w-32 h-1 bg-gradient-to-r from-driving-green to-driving-blue mx-auto rounded-full"></div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <div>
+            {isLoading ? (
+              <div className="text-center py-8">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-driving-blue mx-auto"></div>
+                <p className="mt-4 text-gray-600">Loading contact information...</p>
+              </div>
+            ) : contactInfo ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {visibility.showPhone && (
+                  <Card className="group bg-white/90 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                    <CardContent className="p-8 text-center">
+                      <div className="bg-gradient-to-br from-driving-blue to-driving-blue-light rounded-2xl p-4 w-16 h-16 mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                        <Phone className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="font-bold text-gray-900 mb-2 text-lg">Phone</h3>
+                      <p className="text-gray-600 font-medium">{contactInfo.phone}</p>
+                    </CardContent>
+                  </Card>
+                )}
+                {visibility.showEmail && (
+                  <Card className="group bg-white/90 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
+                    <CardContent className="p-8 text-center">
+                      <div className="bg-gradient-to-br from-driving-orange to-driving-orange-light rounded-2xl p-4 w-16 h-16 mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                        <Mail className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="font-bold text-gray-900 mb-2 text-lg">Email</h3>
+                      <p className="text-gray-600 font-medium">{contactInfo.email}</p>
+                    </CardContent>
+                  </Card>
+                )}
+                {visibility.showAddress && (
+                  <Card className="group bg-white/90 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 sm:col-span-2">
+                    <CardContent className="p-8 text-center">
+                      <div className="bg-gradient-to-br from-driving-purple to-driving-purple-light rounded-2xl p-4 w-16 h-16 mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                        <MapPin className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="font-bold text-gray-900 mb-2 text-lg">Address</h3>
+                      <p className="text-gray-600 font-medium whitespace-pre-line">{contactInfo.address}</p>
+                    </CardContent>
+                  </Card>
+                )}
+                {visibility.showHours && (
+                  <Card className="group bg-white/90 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105 sm:col-span-2">
+                    <CardContent className="p-8 text-center">
+                      <div className="bg-gradient-to-br from-driving-green to-driving-green-light rounded-2xl p-4 w-16 h-16 mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                        <Clock className="h-8 w-8 text-white" />
+                      </div>
+                      <h3 className="font-bold text-gray-900 mb-2 text-lg">Hours</h3>
+                      <p className="text-gray-600 font-medium whitespace-pre-line">{contactInfo.hours}</p>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-gray-600">
+                <p>Contact information not available</p>
+              </div>
+            )}
+          </div>
           <div>
             {visibility.showContactForm && (
-              <Card>
-                <CardHeader>
-                  <CardTitle>Send us a Message</CardTitle>
+              <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-2xl">
+                <CardHeader className="pb-6">
+                  <CardTitle className="text-2xl font-bold text-gray-900 text-center">Send us a Message</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form className="space-y-4" onSubmit={handleSubmit}>
-                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <form className="space-y-6" onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <Input
                         placeholder="Your Name"
                         name="name"
                         value={form.name}
                         onChange={handleChange}
                         required
+                        className="border-2 border-gray-200 focus:border-driving-blue rounded-xl px-4 py-3"
                       />
                       <Input
                         placeholder="Your Email"
@@ -150,6 +159,7 @@ const Contact: React.FC = () => {
                         value={form.email}
                         onChange={handleChange}
                         required
+                        className="border-2 border-gray-200 focus:border-driving-blue rounded-xl px-4 py-3"
                       />
                     </div>
                     <Input
@@ -158,6 +168,7 @@ const Contact: React.FC = () => {
                       name="phone"
                       value={form.phone}
                       onChange={handleChange}
+                      className="border-2 border-gray-200 focus:border-driving-blue rounded-xl px-4 py-3"
                     />
                     <Textarea
                       placeholder="Your Message"
@@ -166,16 +177,17 @@ const Contact: React.FC = () => {
                       value={form.message}
                       onChange={handleChange}
                       required
+                      className="border-2 border-gray-200 focus:border-driving-blue rounded-xl px-4 py-3"
                     />
                     <Button
-                      className="w-full bg-blue-600 hover:bg-blue-700"
+                      className="w-full bg-gradient-to-r from-driving-blue to-driving-orange hover:from-driving-blue-light hover:to-driving-orange-light text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-semibold py-3 rounded-xl"
                       type="submit"
                       disabled={loading}
                     >
                       {loading ? 'Sending...' : 'Send Message'}
                     </Button>
-                    {success && <p className="text-green-600 text-center mt-2">{success}</p>}
-                    {error && <p className="text-red-600 text-center mt-2">{error}</p>}
+                    {success && <p className="text-driving-green text-center mt-2 font-medium">{success}</p>}
+                    {error && <p className="text-red-600 text-center mt-2 font-medium">{error}</p>}
                   </form>
                 </CardContent>
               </Card>

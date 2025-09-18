@@ -63,6 +63,18 @@ export default {
           'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))'
+        },
+        // Custom driving school colors
+        driving: {
+          blue: '#2563eb',
+          'blue-light': '#3b82f6',
+          'blue-dark': '#1d4ed8',
+          orange: '#f97316',
+          'orange-light': '#fb923c',
+          green: '#10b981',
+          'green-light': '#34d399',
+          purple: '#8b5cf6',
+          'purple-light': '#a78bfa',
         }
       },
       fontFamily: {

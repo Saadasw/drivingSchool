@@ -18,7 +18,14 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <Facebook className="h-6 w-6 text-gray-400 hover:text-blue-400 cursor-pointer" />
-              <Instagram className="h-6 w-6 text-gray-400 hover:text-pink-400 cursor-pointer" />
+              <a 
+                href="https://www.instagram.com/rawaasdrivingschool?igsh=anRnZ2NocnE5ZnQ2&utm_source=qr" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-pink-400 transition-colors"
+              >
+                <Instagram className="h-6 w-6" />
+              </a>
               <Youtube className="h-6 w-6 text-gray-400 hover:text-red-400 cursor-pointer" />
             </div>
           </div>
@@ -27,6 +34,7 @@ const Footer: React.FC = () => {
             <h4 className="font-semibold mb-3 sm:mb-4">Quick Links</h4>
             <ul className="space-y-2 text-gray-300">
               <li><a href="#home" className="hover:text-white">Home</a></li>
+              <li><a href="#about" className="hover:text-white">About</a></li>
               <li><a href="#courses" className="hover:text-white">Courses</a></li>
               <li><a href="#gallery" className="hover:text-white">Gallery</a></li>
               <li><a href="#testimonials" className="hover:text-white">Reviews</a></li>
