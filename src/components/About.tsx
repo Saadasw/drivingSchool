@@ -50,21 +50,17 @@ const About: React.FC = () => {
               
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                 <p>
-                  Hey I'm Rawaa H, a highly experienced and certified driving instructor. 
-                  For the past 15 years, I have dedicated my career to helping students become 
-                  safe, confident, and successful drivers.
+                  Hey I'm Rawaa H, a highly experienced and certified driving instructor with over 15 years of professional driving instruction experience. 
+                  I specialize in helping learner drivers master essential driving skills, pass their driving test, and obtain their driver's license with confidence.
                 </p>
                 <p>
-                  My proven approach is designed to guide learners from their very first lesson 
-                  all the way to confidently passing their final test and getting their licence. 
-                  I believe that being a successful driver is about more than just passing a test 
-                  it's about mastering real world skills.
+                  My comprehensive driving lesson program covers everything from basic car control and road safety to advanced defensive driving techniques. 
+                  Whether you're a complete beginner or need to refresh your driving skills, I provide personalized instruction tailored to your learning style and goals.
                 </p>
                 <p>
-                  That's why I provide comprehensive training that covers everything from 
-                  foundational skills to advanced defensive driving techniques, ensuring you are 
-                  well prepared for any situation on the road. I am committed to delivering 
-                  results and helping my students succeed and achieve their driving goals.
+                  As your dedicated driving instructor, I focus on building your confidence behind the wheel while ensuring you understand all road rules, 
+                  traffic signs, and safe driving practices. My proven teaching methods have helped hundreds of students successfully pass their practical driving test 
+                  and become safe, responsible drivers on Australian roads.
                 </p>
               </div>
 

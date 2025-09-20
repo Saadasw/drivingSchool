@@ -58,7 +58,8 @@ const Courses: React.FC = () => {
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Choose from our range of professional driving courses designed to meet your needs and schedule.
+            Choose from our comprehensive range of professional driving lessons and license test preparation courses. 
+            Our certified driving instructor offers flexible scheduling to fit your busy lifestyle and help you pass your driving test successfully.
           </p>
           <div className="w-32 h-1 bg-gradient-to-r from-driving-orange to-driving-purple mx-auto rounded-full mt-6"></div>
         </div>

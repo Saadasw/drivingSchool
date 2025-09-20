@@ -15,8 +15,8 @@ CREATE TABLE IF NOT EXISTS contact_information (
 -- 2. Website Content Table (for dynamic content)
 CREATE TABLE IF NOT EXISTS website_content (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  section_name VARCHAR(100) UNIQUE NOT NULL,
-  content JSONB NOT NULL,
+  section VARCHAR(100),
+  value JSONB,
   is_active BOOLEAN DEFAULT true,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -53,7 +53,7 @@ INSERT INTO visibility_settings (setting_name, is_visible) VALUES
 ON CONFLICT DO NOTHING;
 
 -- 6. Insert default website content
-INSERT INTO website_content (section_name, content) VALUES
+INSERT INTO website_content (section, value) VALUES
   ('hero_title', '{"main": "Learn to Drive with", "highlight": "Confidence"}'),
   ('hero_description', 'Professional driving instruction with experienced instructors. Get your license faster with our proven teaching methods.'),
   ('company_name', 'Rawaa''s Driving School'),
@@ -109,5 +109,5 @@ CREATE POLICY "Allow admin write access to visibility settings"
 
 -- 12. Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_contact_information_updated_at ON contact_information(updated_at);
-CREATE INDEX IF NOT EXISTS idx_website_content_section_name ON website_content(section_name);
+CREATE INDEX IF NOT EXISTS idx_website_content_section_name ON website_content(section);
 CREATE INDEX IF NOT EXISTS idx_visibility_settings_setting_name ON visibility_settings(setting_name);
