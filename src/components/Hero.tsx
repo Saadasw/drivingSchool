@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-lg">
                 Professional driving instruction with experienced instructors. 
-                Get your license faster with our proven teaching methods.
+                Get your licence faster with our proven teaching methods.
               </p>
             </div>
 

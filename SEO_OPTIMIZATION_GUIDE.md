@@ -55,7 +55,7 @@ Update the JSON-LD structured data in `index.html`:
    - Add exact address and phone number (0481 322 734)
    - Add business hours
    - Upload photos of your car, school, and yourself
-   - Add services: "Driving Lessons", "License Test Preparation", etc.
+   - Add services: "Driving Lessons", "Licence Test Preparation", etc.
 
 2. **Get Customer Reviews**
    - Ask satisfied customers to leave Google reviews
@@ -76,7 +76,7 @@ Focus on these keyword combinations:
 - "driving school [your city]"
 - "learn to drive [your area]"
 - "driving instructor [your suburb]"
-- "license test preparation [your city]"
+- "licence test preparation [your city]"
 - "driving lessons near me"
 
 ### 6. Technical Performance

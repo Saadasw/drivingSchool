@@ -118,7 +118,7 @@ const Testimonials: React.FC = () => {
         )}
         <div className="text-center mt-20">
           <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20 max-w-4xl mx-auto">
-            <p className="text-xl text-gray-600 mb-8 font-medium">Join hundreds of satisfied students who earned their license with us!</p>
+            <p className="text-xl text-gray-600 mb-8 font-medium">Join hundreds of satisfied students who earned their licence with us!</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center group">
                 <div className="bg-gradient-to-br from-driving-blue to-driving-blue-light rounded-2xl p-6 w-24 h-24 mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">

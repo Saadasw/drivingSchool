@@ -23,7 +23,7 @@ export const seedData = async () => {
       },
       {
         title: 'Intensive Course',
-        description: 'Fast-track your driving license with our intensive 5-day course.',
+        description: 'Fast-track your driving licence with our intensive 5-day course.',
         price: 599,
         duration: '5 days',
         features: [
@@ -87,7 +87,7 @@ export const seedData = async () => {
     // Seed FAQ
     const faqData = [
       {
-        question: 'How long does it take to get a driving license?',
+        question: 'How long does it take to get a driving licence?',
         answer: 'The time varies depending on your experience and the course you choose. Our intensive course can prepare you in 5 days, while regular lessons typically take 4-6 weeks.',
         is_active: true
       },
@@ -150,7 +150,7 @@ export const seedData = async () => {
       },
       {
         section_name: 'hero_description',
-        content: 'Professional driving instruction with experienced instructors. Get your license faster with our proven teaching methods.',
+        content: 'Professional driving instruction with experienced instructors. Get your licence faster with our proven teaching methods.',
         is_active: true
       },
       {
@@ -269,7 +269,7 @@ export const seedData = async () => {
         name: 'Sarah Johnson',
         email: 'sarah.j@email.com',
         phone: '0423 456 789',
-        message: 'I need to get my license quickly for a new job. Do you offer intensive courses? How long does it typically take?',
+        message: 'I need to get my licence quickly for a new job. Do you offer intensive courses? How long does it typically take?',
         is_read: true,
         response: 'Hi Sarah, yes we do offer intensive courses! Our 5-day intensive course is perfect for getting your license quickly. It includes comprehensive training and test preparation. Please call us at 0481 322 734 to book.',
         responded_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(), // 1 day ago

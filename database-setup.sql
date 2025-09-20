@@ -55,7 +55,7 @@ ON CONFLICT DO NOTHING;
 -- 6. Insert default website content
 INSERT INTO website_content (section, value) VALUES
   ('hero_title', '{"main": "Learn to Drive with", "highlight": "Confidence"}'),
-  ('hero_description', 'Professional driving instruction with experienced instructors. Get your license faster with our proven teaching methods.'),
+  ('hero_description', 'Professional driving instruction with experienced instructors. Get your licence faster with our proven teaching methods.'),
   ('company_name', 'Rawaa''s Driving School'),
   ('company_domain', 'www.rawaadrivingschool.com')
 ON CONFLICT DO NOTHING;

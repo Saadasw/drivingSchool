@@ -51,7 +51,7 @@ const About: React.FC = () => {
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed">
                 <p>
                   Hey I'm Rawaa H, a highly experienced and certified driving instructor with over 15 years of professional driving instruction experience. 
-                  I specialize in helping learner drivers master essential driving skills, pass their driving test, and obtain their driver's license with confidence.
+                  I specialize in helping learner drivers master essential driving skills, pass their driving test, and obtain their driver's licence with confidence.
                 </p>
                 <p>
                   My comprehensive driving lesson program covers everything from basic car control and road safety to advanced defensive driving techniques. 
