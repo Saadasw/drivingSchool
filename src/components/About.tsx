@@ -60,6 +60,10 @@ const About: React.FC = () => {
                   Whether you're a complete beginner or need to refresh your driving skills, I provide personalized instruction tailored to your learning style and goals.
                 </p>
                 <p>
+                  <strong>Language Support:</strong> I provide instruction in both English and Arabic, ensuring that language barriers don't prevent you from learning to drive safely and confidently. 
+                  Whether you prefer English or Arabic instruction, I can adapt my teaching methods to suit your language preference.
+                </p>
+                <p>
                   As your dedicated driving instructor, I focus on building your confidence behind the wheel while ensuring you understand all road rules, 
                   traffic signs, and safe driving practices. My proven teaching methods have helped hundreds of students successfully pass their practical driving test 
                   and become safe, responsible drivers on Australian roads.

@@ -51,7 +51,7 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Mobile-first Feature Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-6 sm:pt-8">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 pt-6 sm:pt-8">
               <div className="group text-center">
                 <div className="bg-gradient-to-br from-driving-blue to-driving-blue-light rounded-2xl p-3 sm:p-4 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-2 sm:mb-3 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
                   <Car className="h-8 w-8 sm:h-12 sm:w-12 text-white" />
@@ -75,6 +75,12 @@ const Hero: React.FC = () => {
                   <Clock className="h-8 w-8 sm:h-12 sm:w-12 text-white" />
                 </div>
                 <p className="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-driving-green transition-colors">Flexible Hours</p>
+              </div>
+              <div className="group text-center">
+                <div className="bg-gradient-to-br from-driving-orange to-driving-orange-light rounded-2xl p-3 sm:p-4 w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-2 sm:mb-3 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                  <span className="text-2xl sm:text-3xl">🌐</span>
+                </div>
+                <p className="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-driving-orange transition-colors">English & Arabic</p>
               </div>
             </div>
           </div>

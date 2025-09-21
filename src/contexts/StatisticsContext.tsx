@@ -4,6 +4,7 @@ interface Statistics {
   happyStudents: string;
   passRate: string;
   yearsExperience: string;
+  languagesSupported: string;
 }
 
 interface StatisticsContextType {
@@ -13,8 +14,9 @@ interface StatisticsContextType {
 
 const defaultStatistics: Statistics = {
   happyStudents: '500+',
-  passRate: '95%',
-  yearsExperience: '10+'
+  passRate: '98%',
+  yearsExperience: '15+',
+  languagesSupported: 'English & Arabic'
 };
 
 const StatisticsContext = createContext<StatisticsContextType | undefined>(undefined);

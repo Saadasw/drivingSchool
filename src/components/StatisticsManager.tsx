@@ -14,7 +14,8 @@ export const StatisticsManager = () => {
   const [formData, setFormData] = useState({
     happyStudents: statistics.happyStudents,
     passRate: statistics.passRate,
-    yearsExperience: statistics.yearsExperience
+    yearsExperience: statistics.yearsExperience,
+    languagesSupported: statistics.languagesSupported
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -32,7 +33,8 @@ export const StatisticsManager = () => {
     setFormData({
       happyStudents: statistics.happyStudents,
       passRate: statistics.passRate,
-      yearsExperience: statistics.yearsExperience
+      yearsExperience: statistics.yearsExperience,
+      languagesSupported: statistics.languagesSupported
     });
   };
 
@@ -45,7 +47,7 @@ export const StatisticsManager = () => {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6 mb-8">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <Card>
           <CardHeader className="text-center">
             <Users className="h-8 w-8 text-blue-600 mx-auto mb-2" />
@@ -84,6 +86,21 @@ export const StatisticsManager = () => {
             </div>
           </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader className="text-center">
+            <div className="h-8 w-8 text-orange-600 mx-auto mb-2 flex items-center justify-center">
+              <span className="text-2xl">🌐</span>
+            </div>
+            <CardTitle className="text-lg">Current Statistics</CardTitle>
+          </CardHeader>
+          <CardContent className="text-center space-y-2">
+            <div>
+              <div className="text-lg font-bold text-orange-600">{statistics.languagesSupported}</div>
+              <div className="text-sm text-gray-500">Languages Supported</div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <Card>
@@ -92,7 +109,7 @@ export const StatisticsManager = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
                 <Label htmlFor="happyStudents" className="flex items-center gap-2">
                   <Users className="w-4 h-4" />
@@ -136,6 +153,21 @@ export const StatisticsManager = () => {
                   className="mt-1"
                 />
                 <p className="text-xs text-gray-500 mt-1">Example: 10+, 15+, etc.</p>
+              </div>
+
+              <div>
+                <Label htmlFor="languagesSupported" className="flex items-center gap-2">
+                  <span className="text-lg">🌐</span>
+                  Languages Supported
+                </Label>
+                <Input
+                  id="languagesSupported"
+                  value={formData.languagesSupported}
+                  onChange={(e) => setFormData({ ...formData, languagesSupported: e.target.value })}
+                  placeholder="e.g., English & Arabic"
+                  className="mt-1"
+                />
+                <p className="text-xs text-gray-500 mt-1">Example: English & Arabic, English, Arabic, etc.</p>
               </div>
             </div>
 
