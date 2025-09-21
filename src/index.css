@@ -130,3 +130,26 @@
 .markdown-preview ol {
   @apply my-4 ml-6;
 }
+
+/* Mobile-first utility classes */
+@layer utilities {
+  .mobile-first-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+  
+  .mobile-first-heading {
+    @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl;
+  }
+  
+  .mobile-first-spacing {
+    @apply py-8 sm:py-12 lg:py-16 xl:py-20;
+  }
+  
+  .mobile-first-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .mobile-first-gap {
+    @apply gap-4 sm:gap-6 lg:gap-8;
+  }
+}
